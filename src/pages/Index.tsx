@@ -54,11 +54,11 @@ const Index = () => {
   const [currentDate] = useState(new Date());
 
   const tabs: TabItem[] = [
-    { id: 'chat', label: 'Chat', icon: <MessageCircle className="w-5 h-5" /> },
-    { id: 'history', label: 'Chat History', icon: <History className="w-5 h-5" /> },
-    { id: 'vaccine', label: 'Vaccine Scheduler', icon: <Shield className="w-5 h-5" /> },
-    { id: 'help', label: 'Help', icon: <HelpCircle className="w-5 h-5" /> },
-    { id: 'contact', label: 'Contact', icon: <Mail className="w-5 h-5" /> },
+    { id: 'chat', label: 'Chat', icon: <MessageCircle className="w-5 h-5 flex-shrink-0" /> },
+    { id: 'history', label: 'Chat History', icon: <History className="w-5 h-5 flex-shrink-0" /> },
+    { id: 'vaccine', label: 'Vaccine Scheduler', icon: <Shield className="w-5 h-5 flex-shrink-0" /> },
+    { id: 'help', label: 'Help', icon: <HelpCircle className="w-5 h-5 flex-shrink-0" /> },
+    { id: 'contact', label: 'Contact', icon: <Mail className="w-5 h-5 flex-shrink-0" /> },
   ];
 
   const diseaseInfo = [
@@ -226,11 +226,11 @@ const Index = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200 ${
+                    className={`w-full flex items-center gap-3 rounded-xl transition-all duration-200 ${
                       activeTab === tab.id
                         ? 'bg-primary text-primary-foreground shadow-lg'
                         : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-                    } ${!sidebarOpen && 'justify-center'}`}
+                    } ${!sidebarOpen ? 'justify-center px-2 py-3' : 'px-3 py-3'}`}
                   >
                     {tab.icon}
                     {sidebarOpen && <span className="font-medium">{tab.label}</span>}
