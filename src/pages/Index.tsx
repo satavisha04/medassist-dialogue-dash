@@ -183,7 +183,7 @@ const Index = () => {
             {/* Header */}
             <div className="p-4 border-b border-glass-border">
               <div className="flex items-center justify-between">
-                <div className={`flex items-center gap-3 ${!sidebarOpen && 'justify-center'}`}>
+                <div className={`flex items-center gap-3 ${!sidebarOpen && 'justify-center w-full'}`}>
                   <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-glow rounded-xl flex items-center justify-center">
                     <Stethoscope className="w-6 h-6 text-primary-foreground" />
                   </div>
@@ -194,15 +194,29 @@ const Index = () => {
                     </div>
                   )}
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  <Menu className="w-5 h-5" />
-                </Button>
+                {sidebarOpen && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className="text-muted-foreground hover:text-primary"
+                  >
+                    <Menu className="w-5 h-5" />
+                  </Button>
+                )}
               </div>
+              {!sidebarOpen && (
+                <div className="flex justify-center mt-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className="text-muted-foreground hover:text-primary"
+                  >
+                    <Menu className="w-5 h-5" />
+                  </Button>
+                </div>
+              )}
             </div>
 
             {/* Navigation Tabs */}
