@@ -23,6 +23,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 interface Message {
   id: string;
@@ -52,6 +53,7 @@ const Index = () => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [currentDate] = useState(new Date());
+  const [currentLanguage, setCurrentLanguage] = useState('en');
 
   const tabs: TabItem[] = [
     { id: 'chat', label: 'Chat', icon: <MessageCircle className="w-5 h-5 flex-shrink-0" /> },
@@ -188,9 +190,16 @@ const Index = () => {
                     <Stethoscope className="w-6 h-6 text-primary-foreground" />
                   </div>
                   {sidebarOpen && (
-                    <div>
-                      <h1 className="text-xl font-bold text-primary">SwasthyaAI</h1>
-                      <p className="text-sm text-muted-foreground">Medical Assistant</p>
+                    <div className="flex items-center gap-3">
+                      <div>
+                        <h1 className="text-xl font-bold text-primary">SwasthyaAI</h1>
+                        <p className="text-sm text-muted-foreground">Medical Assistant</p>
+                      </div>
+                      <LanguageSelector 
+                        currentLanguage={currentLanguage}
+                        onLanguageChange={setCurrentLanguage}
+                        compact={true}
+                      />
                     </div>
                   )}
                 </div>
@@ -206,7 +215,7 @@ const Index = () => {
                 )}
               </div>
               {!sidebarOpen && (
-                <div className="flex justify-center mt-2">
+                <div className="flex flex-col items-center gap-2 mt-2">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -215,6 +224,11 @@ const Index = () => {
                   >
                     <Menu className="w-5 h-5" />
                   </Button>
+                  <LanguageSelector 
+                    currentLanguage={currentLanguage}
+                    onLanguageChange={setCurrentLanguage}
+                    compact={true}
+                  />
                 </div>
               )}
             </div>
